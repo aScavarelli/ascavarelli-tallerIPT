@@ -117,3 +117,7 @@ Muestra una sección textual o informativa relacionada con los usuarios gestiona
 
 ### Datos utilizados
 - Información general de usuarios registrados
+
+# Diagrama UML
+
+![Diagrama UML](img/uml.png)

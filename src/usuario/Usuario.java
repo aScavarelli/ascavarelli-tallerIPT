@@ -1,91 +1,58 @@
 package usuario;
 
-import java.util.Scanner;
-
 public class Usuario {
 
-    static String nombre;
-    static String apellido;
-    static String email;
-    static String pais;
-    static String contrasena;
-    static String perfil;
+    private String nombre;
+    private String apellido;
+    private String email;
+    private String pais;
+    private String contrasena;
 
-    public static void main(String[] args) {
-
-        Scanner teclado = new Scanner(System.in);
-        int opcion;
-
-        do {
-            System.out.println("\n=== MENÚ ===");
-            System.out.println("1 - Registro Administrador");
-            System.out.println("2 - Login");
-            System.out.println("3 - Salir");
-            System.out.print("Seleccione una opción: ");
-
-            opcion = teclado.nextInt();
-            teclado.nextLine();
-
-            switch (opcion) {
-                case 1:
-                    registrar(teclado);
-                    break;
-
-                case 2:
-                    login(teclado);
-                    break;
-
-                case 3:
-                    System.out.println("Programa finalizado.");
-                    break;
-
-                default:
-                    System.out.println("Opción inválida.");
-            }
-
-        } while (opcion != 3);
-
-        teclado.close();
+    public Usuario(String nombre, String apellido, String email, String pais, String contrasena) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.pais = pais;
+        this.contrasena = contrasena;
     }
 
-    public static void registrar(Scanner teclado) {
-
-        System.out.println("\n=== REGISTRO ===");
-
-        System.out.print("Nombre: ");
-        nombre = teclado.nextLine();
-
-        System.out.print("Apellido: ");
-        apellido = teclado.nextLine();
-
-        System.out.print("Email: ");
-        email = teclado.nextLine();
-
-        System.out.print("Pais: ");
-        pais = teclado.nextLine();
-
-        System.out.print("Contraseña: ");
-        contrasena = teclado.nextLine();
-
-        perfil = "Administrador";
-
-        System.out.println("Usuario registrado correctamente.");
+    public String getNombre() {
+        return nombre;
     }
 
-    public static void login(Scanner teclado) {
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-        System.out.print("Email: ");
-        String emailIngresado = teclado.nextLine();
+    public String getApellido() {
+        return apellido;
+    }
 
-        System.out.print("Contraseña: ");
-        String contrasenaIngresada = teclado.nextLine();
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
-        if (emailIngresado.equals(email) && contrasenaIngresada.equals(contrasena)) {
-            System.out.println("Login exitoso.");
-            System.out.println("Bienvenido " + nombre + " " + apellido);
-            System.out.println("Perfil: " + perfil);
-        } else {
-            System.out.println("Usuario o contraseña incorrectos.");
-        }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 }
