@@ -1,30 +1,32 @@
 package usuario;
 
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
 public class SistemaUsuarios {
 
-    private Usuario[] usuarios;
-    private int cantidad;
-
+    //private Usuario[] usuarios;
+    private List<Usuario> usuarios;
     public SistemaUsuarios() {
 
-        usuarios = new Usuario[10];
-        cantidad = 0;
+        //usuarios = new Usuario[10];
+        usuarios = new ArrayList<>();
 
-        usuarios[cantidad++] = new Admin(
-                "Juan",
-                "Perez",
-                "admin@test.com",
-                "Uruguay",
-                "1234");
-
-        usuarios[cantidad++] = new Tester(
+        usuarios.add(new Admin(
                 "Ana",
                 "Lopez",
                 "tester@test.com",
                 "Uruguay",
-                "1234");
+                "1234"
+        ));
+
+        usuarios.add(new Tester(
+                "Ana",
+                "Lopez",
+                "tester@test.com",
+                "Uruguay",
+                "1234"));
     }
 
     public void registrar(Scanner teclado) {
@@ -61,21 +63,21 @@ public class SistemaUsuarios {
 
         if (tipo == 1) {
 
-            usuarios[cantidad++] = new Admin(
+            usuarios.add(new Admin(
                     nombre,
                     apellido,
                     email,
                     pais,
-                    contrasena);
+                    contrasena));
 
         } else if (tipo == 2) {
 
-            usuarios[cantidad++] = new Tester(
+            usuarios.add(new Tester(
                     nombre,
                     apellido,
                     email,
                     pais,
-                    contrasena);
+                    contrasena));
 
         } else {
 
@@ -108,11 +110,7 @@ public class SistemaUsuarios {
             System.out.println("Login exitoso.");
             System.out.println("Bienvenido " + usuario.getNombre() + " " + usuario.getApellido());
 
-            if (usuario instanceof Admin) {
-                System.out.println("Perfil: Administrador");
-            } else {
-                System.out.println("Perfil: Tester");
-            }
+            System.out.println("Perfil: " + usuario.obtenerPerfil());
 
         } else {
 
@@ -123,17 +121,61 @@ public class SistemaUsuarios {
 
     public Usuario buscarUsuario(String email) {
 
-        for (int i = 0; i < cantidad; i++) {
+        for (Usuario usuario : usuarios) {
 
-            if (usuarios[i].getEmail().equals(email)) {
+            if (usuario.getEmail().equalsIgnoreCase(email)) {
 
-                return usuarios[i];
+                return usuario;
 
             }
 
         }
 
         return null;
+    }
+
+    public void listarUsuarios() {
+
+        if (usuarios.isEmpty()) {
+
+            System.out.println("No hay usuarios registrados.");
+            return;
+
+        }
+
+        for (Usuario usuario : usuarios) {
+
+            System.out.println("----------------------");
+            System.out.println("Nombre: " + usuario.getNombre());
+            System.out.println("Apellido: " + usuario.getApellido());
+            System.out.println("Email: " + usuario.getEmail());
+            System.out.println("Perfil: " + usuario.obtenerPerfil());
+
+        }
+
+    }
+
+    public void buscarUsuario(Scanner teclado) {
+
+        System.out.print("Ingrese el email: ");
+        String email = teclado.nextLine();
+
+        Usuario usuario = buscarUsuario(email);
+
+        if (usuario == null) {
+
+            System.out.println("Usuario no encontrado.");
+
+        } else {
+
+            System.out.println("\n=== USUARIO ENCONTRADO ===");
+            System.out.println("Nombre: " + usuario.getNombre());
+            System.out.println("Apellido: " + usuario.getApellido());
+            System.out.println("Email: " + usuario.getEmail());
+            System.out.println("País: " + usuario.getPais());
+            System.out.println("Perfil: " + usuario.obtenerPerfil());
+
+        }
     }
 
 }

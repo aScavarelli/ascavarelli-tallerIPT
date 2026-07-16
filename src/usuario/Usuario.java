@@ -1,6 +1,6 @@
 package usuario;
 
-public class Usuario {
+public abstract class Usuario {
 
     private String nombre;
     private String apellido;
@@ -55,4 +55,6 @@ public class Usuario {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
+
+    public abstract String obtenerPerfil();
 }
